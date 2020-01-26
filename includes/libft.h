@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sfalia-f <sfalia-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:09:54 by ycorrupt          #+#    #+#             */
-/*   Updated: 2019/10/29 23:13:57 by ycorrupt         ###   ########.fr       */
+/*   Updated: 2020/01/26 17:17:54 by sfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,7 @@ void			del_lst(t_list **lst, int from_end, int ex);
 void			del_win(t_list **lst, void *content);
 void			ft_swap_points(void **a, void **b);
 int				ft_mod(long int num);
+int				ft_strendwith(char *str, char *end);
+int				ft_strstartwith(char *str, char *start);
 
 #endif
