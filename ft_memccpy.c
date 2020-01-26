@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memccpy.c                                          :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 19:45:52 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/20 19:45:54 by sfalia-f         ###   ########.fr       */
+/*   Created: 2018/12/05 19:58:47 by ycorrupt          #+#    #+#             */
+/*   Updated: 2018/12/16 19:37:05 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char	*cp_dst;
-	unsigned char	*cp_src;
-	unsigned char	cp_c;
+	unsigned char *dst_c;
+	unsigned char *src_c;
 
-	cp_c = (unsigned char)c;
-	cp_dst = (unsigned char *)dst;
-	cp_src = (unsigned char *)src;
+	dst_c = (unsigned char *)dst;
+	src_c = (unsigned char *)src;
 	while (n--)
 	{
-		*cp_dst = *cp_src++;
-		if ((int)*cp_dst++ == cp_c)
-			return ((void *)cp_dst);
+		*dst_c++ = *src_c++;
+		if (*(src_c - 1) == (unsigned char)c)
+			return (dst_c);
 	}
 	return (NULL);
 }

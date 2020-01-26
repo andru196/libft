@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/18 16:44:32 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/12/18 16:44:34 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/02/22 19:36:05 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/22 20:00:36 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,22 @@
 
 char	*ft_strndup(const char *s1, size_t n)
 {
-	char	*rez;
-	size_t	i;
+	char		*result;
+	size_t		size;
+	char		*temp;
 
-	i = ft_strlen(s1);
-	i = (n > i ? i : n);
-	rez = malloc(i + 1);
-	if (rez)
+	temp = NULL;
+	if (n == 0)
+		temp = ft_strnew(0);
+	if (n > 0)
 	{
-		rez[i] = '\0';
-		return (ft_strncpy(rez, s1, i));
+		size = ft_strlen(s1);
+		if ((result = ft_strnew(n > size ? size : n)))
+		{
+			temp = result;
+			while (*s1 && n--)
+				*result++ = *s1++;
+		}
 	}
-	else
-		return (NULL);
+	return (temp);
 }

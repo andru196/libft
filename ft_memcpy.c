@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/20 18:28:17 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/20 18:28:19 by sfalia-f         ###   ########.fr       */
+/*   Created: 2018/12/05 18:06:24 by ycorrupt          #+#    #+#             */
+/*   Updated: 2018/12/16 19:37:33 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*cpy_dst;
-	void			*ccpy_dst;
-	unsigned char	*cpy_src;
-	size_t			i;
+	unsigned char *dst_c;
+	unsigned char *src_c;
 
-	i = 0;
-	ccpy_dst = dst;
-	cpy_src = (unsigned char *)src;
-	cpy_dst = (unsigned char *)dst;
-	while (i < n)
-	{
-		*(cpy_dst++) = *(cpy_src++);
-		i++;
-	}
-	return (ccpy_dst);
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	dst_c = (unsigned char *)dst;
+	src_c = (unsigned char *)src;
+	while (n--)
+		*dst_c++ = *src_c++;
+	return (dst);
 }

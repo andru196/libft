@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_power.c                                         :+:      :+:    :+:   */
+/*   ft_lstladd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sfalia-f <sfalia-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 21:24:48 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/12/14 21:24:49 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/07/03 19:02:40 by sfalia-f          #+#    #+#             */
+/*   Updated: 2019/07/03 19:07:14 by sfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_power(int nbr, int n)
+void	ft_lstladd(t_list **alst, t_list *new)
 {
-	int	rez;
+	t_list	*lst;
 
-	rez = 1;
-	while (n--)
+	if (!(*alst))
 	{
-		rez *= nbr;
+		*alst = new;
+		return ;
 	}
-	return (rez);
+	lst = *alst;
+	while (lst->next)
+		lst = lst->next;
+	lst->next = new;
 }

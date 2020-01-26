@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 12:29:00 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/22 12:29:01 by sfalia-f         ###   ########.fr       */
+/*   Created: 2018/12/22 16:25:05 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/06 16:03:54 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,21 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int		i;
-	char	*str;
+	char	*s1;
+	char	*s2;
+	int		length;
 
-	str = (char *)haystack;
-	while (*haystack && len)
+	s1 = (char *)haystack;
+	s2 = (char *)needle;
+	length = ft_strlen(s2);
+	if (!*s2)
+		return (s1);
+	while (*s1 && (long int)len - length + 1 > 0)
 	{
-		i = 0;
-		if (*haystack == *needle)
-			str = (char *)haystack;
-		while (*haystack && *needle && *haystack == *needle && len--)
-		{
-			haystack++;
-			i++;
-			needle++;
-		}
-		if (!(*needle))
-			return (str);
-		needle -= i;
-		haystack -= (i - 1);
-		len += i - 1;
+		if (!(ft_strncmp(s1, s2, length)))
+			return (s1);
+		--len;
+		++s1;
 	}
-	return ((!*needle) ? str : NULL);
+	return (NULL);
 }

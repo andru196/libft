@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:48:43 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/22 16:03:37 by sfalia-f         ###   ########.fr       */
+/*   Created: 2018/11/23 19:45:59 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/06 22:18:21 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	char	*c_str;
-	size_t	len0;
+	int		length;
+	char	*result;
 
-	if (!s)
-		return (NULL);
-	len0 = ft_strlen(s);
-	if (start > len0 - 1 || len0 < (start + len))
-		return (NULL);
-	len0 = (len0 >= (len + start)) ? (len + 1) : (len0 - start + 1);
-	while (start-- && *s)
-		s++;
-	str = malloc(len0--);
-	if (!str)
-		return (str);
-	c_str = str;
-	while (*s && len0--)
-		*str++ = *s++;
-	*str = '\0';
-	return (c_str);
+	if (s)
+	{
+		length = ft_strlen(s);
+		length = length - start > (long int)len ?
+				(long int)len : length - start;
+		if ((result = (char *)malloc(sizeof(char) * (length + 1))))
+		{
+			ft_strncpy(result, s + start, length);
+			result[length] = '\0';
+			return (result);
+		}
+	}
+	return (NULL);
 }

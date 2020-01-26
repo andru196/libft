@@ -1,55 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strits.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 16:29:56 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/29 16:30:43 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/01/19 13:00:30 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/22 21:17:37 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strintlener(int nbr)
+char	*ft_itoa(int n)
 {
-	int	i;
+	char		*result;
+	long int	copy_n;
+	int			r;
 
-	i = 0;
-	while (nbr)
+	copy_n = n;
+	r = n < 0 ? 2 : 1;
+	while (n /= 10)
+		r++;
+	if (!(result = (char *)malloc(sizeof(char) * (r + 1))))
+		return (NULL);
+	if (copy_n < 0)
 	{
-		nbr /= 10;
-		i++;
+		result[0] = '-';
+		copy_n *= -1;
 	}
-	return (i);
-}
-
-char		*ft_itoa(int nbr)
-{
-	long int	cpy;
-	char		*rez;
-	int			i;
-	int			sign;
-
-	cpy = nbr;
-	i = 0;
-	if (!nbr)
-		return (ft_strdup("0"));
-	if (nbr < 0)
+	result[r] = '\0';
+	result[0] = copy_n == 0 ? '0' : result[0];
+	while (copy_n)
 	{
-		sign = 1;
-		cpy = -cpy;
-		i++;
+		result[r - 1] = (copy_n % 10) + '0';
+		--r;
+		copy_n /= 10;
 	}
-	i += ft_strintlener(cpy);
-	rez = ft_strnew(i);
-	while (cpy && rez)
-	{
-		rez[--i] = (cpy % 10) + '0';
-		cpy /= 10;
-	}
-	if (rez && !(rez[0] >= '0' && rez[0] <= '9'))
-		rez[0] = '-';
-	return (rez);
+	return (result);
 }

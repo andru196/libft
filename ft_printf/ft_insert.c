@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnlen.c                                       :+:      :+:    :+:   */
+/*   ft_insert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 11:20:13 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/22 11:22:48 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/06/28 19:59:22 by sfalia-f          #+#    #+#             */
+/*   Updated: 2019/06/28 19:59:27 by sfalia-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_strnlen(const char *s, size_t maxlen)
+char	*ft_insert(char *where, char *what, size_t index)
 {
-	size_t i;
+	size_t	i;
+	char	*str;
 
 	i = 0;
-	while (i < maxlen && *s)
-	{
-		s++;
-		i++;
-	}
-	return (i);
+	if (where)
+		i += ft_strlen(where);
+	if (index > i)
+		return (NULL);
+	if (what)
+		i += ft_strlen(what);
+	if (!(str = (char *)malloc(i)))
+		return (NULL);
+	ft_memcpy(str, where, index);
+	str[index] = '\0';
+	ft_strcat(str + index, what);
+	ft_strcat(str, where + index);
+	return (str);
 }

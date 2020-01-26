@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 19:57:24 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/22 19:57:25 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/02/06 19:24:22 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/22 21:22:20 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,20 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*lt1;
-	t_list	*lt2;
-	t_list	*rez;
+	t_list *result;
+	t_list *temp;
 
-	if (lst == NULL || f == NULL)
+	if (!lst || !f)
 		return (NULL);
-	rez = f(lst);
+	result = f(lst);
+	temp = result;
 	lst = lst->next;
-	lt2 = rez;
 	while (lst)
 	{
-		lt1 = lst->next;
-		if (!(lt2->next = f(lst)))
-		{
-			lst = NULL;
-			ft_lstclr(&rez);
-		}
-		else
-		{
-			lt2 = lt2->next;
-			lst = lt1;
-		}
+		if (!(temp->next = f(lst)))
+			return (NULL);
+		lst = lst->next;
+		temp = temp->next;
 	}
-	return (rez);
+	return (result);
 }

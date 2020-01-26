@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/30 20:02:17 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/30 20:02:18 by sfalia-f         ###   ########.fr       */
+/*   Created: 2018/12/27 15:54:31 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/05 19:38:10 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char	*cpy;
-	char	*rez;
-	int		len;
-	int		c_len;
+	char	*result;
+	char	*copy_s;
+	int		length;
 
-	len = 0;
-	if (!s)
-		return (NULL);
-	while (*s && (*s == '\n' || *s == ' ' || *s == '\t'))
-		s++;
-	cpy = (char *)s;
-	while (*cpy)
-		cpy++;
-	cpy = (cpy == s) ? cpy : cpy - 1;
-	while (*cpy == '\n' || *cpy == ' ' || *cpy == '\t')
-		cpy--;
-	while (cpy-- != s)
-		len = (s == cpy) ? len + 2 : len + 1;
-	if (!(rez = malloc(len + 1)))
-		return (NULL);
-	c_len = len;
-	while (len--)
-		*rez++ = *s++;
-	*rez = '\0';
-	return (rez - c_len);
+	if (s)
+	{
+		length = 1;
+		while (*s == ' ' || *s == '\n' || *s == '\t')
+			++s;
+		if (!*s)
+			return (ft_strnew(0));
+		copy_s = (char *)s;
+		while (*s)
+			++s;
+		while (*s == ' ' || *s == '\n' || *s == '\t' || *s == '\0')
+			--s;
+		while (s-- != copy_s)
+			++length;
+		if (!(result = (char *)malloc(sizeof(char) * (length + 1))))
+			return (NULL);
+		result[length] = '\0';
+		return (ft_strncpy(result, copy_s, length));
+	}
+	return (NULL);
 }

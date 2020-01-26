@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclr.c                                        :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/16 21:29:30 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/12/16 21:29:43 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/06/13 18:55:39 by sfalia-f          #+#    #+#             */
+/*   Updated: 2019/06/24 15:56:38 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstclr(t_list **hl)
+void	ft_utoa(unsigned long long int n, char rez[21])
 {
-	t_list *frs;
-	t_list *sec;
+	int i;
 
-	frs = *hl;
-	while (frs)
+	i = 20;
+	while (n)
 	{
-		sec = frs->next;
-		free(frs->content);
-		free(frs);
-		frs = sec;
+		rez[i--] = n % 10;
+		n /= 10;
 	}
-	free(hl);
-	*hl = NULL;
 }

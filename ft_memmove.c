@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 12:56:36 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/21 12:56:38 by sfalia-f         ###   ########.fr       */
+/*   Created: 2018/12/05 20:44:10 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/05 18:38:39 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*cpy_dst;
-	unsigned char	*cpy_src;
+	unsigned char	*dst_c;
+	unsigned char	*src_c;
+	size_t			temp;
 
-	cpy_src = (unsigned char *)src;
-	cpy_dst = (unsigned char *)dst;
+	if (!len)
+		return (dst);
+	dst_c = (unsigned char *)dst;
+	src_c = (unsigned char *)src;
 	if (dst > src)
 	{
-		cpy_dst += len - 1;
-		cpy_src += len - 1;
-		while (len--)
+		temp = len - 1;
+		while (temp--)
 		{
-			*cpy_dst-- = *cpy_src--;
+			++dst_c;
+			++src_c;
 		}
+		while (len--)
+			*dst_c-- = *src_c--;
 	}
 	else
-		while (len--)
-		{
-			*cpy_dst++ = *cpy_src++;
-		}
-	return (dst);
+		ft_memcpy(dst, src, len);
+	return ((void *)dst);
 }

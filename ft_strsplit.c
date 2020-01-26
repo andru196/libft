@@ -3,106 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/30 20:02:30 by sfalia-f          #+#    #+#             */
-/*   Updated: 2018/11/30 20:02:31 by sfalia-f         ###   ########.fr       */
+/*   Created: 2019/01/19 12:56:44 by ycorrupt          #+#    #+#             */
+/*   Updated: 2019/02/06 17:04:03 by ycorrupt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	sublen(char const *s, char c)
+static int		words(char const *s, char c)
 {
-	int	i;
+	int result;
 
-	if (!s)
-		return (0);
-	if (!*s)
-		return (0);
-	i = 1;
-	if (*s == c)
-		i--;
+	result = (*s == c || !*s) ? 0 : 1;
 	while (*s)
 	{
-		if (*s == c)
-		{
-			while (*s == c)
-				s++;
-			if (!*s)
-			{
-				s--;
-				break ;
-			}
-			i++;
-		}
-		s++;
+		if (*s == c && *(s + 1) != c)
+			++result;
+		++s;
 	}
-	return (i);
+	if (*(s - 1) == c)
+		--result;
+	return (result);
 }
 
-static int	subclen(char const **s, char c)
+static char		**error_case(char ***result, int i)
 {
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (**s && **s != c)
-	{
-		(*s)++;
-		i++;
-	}
-	return (i);
-}
-
-char static	**ar_checker(char **ar, int i)
-{
-	int	f;
-	int j;
-
-	j = i;
-	f = 0;
-	if (!ar)
-		return (NULL);
-	ar[i] = NULL;
 	while (i--)
-		if (ar[i] == NULL)
-			f = 1;
-	if (f)
-	{
-		while (j--)
-			if (ar[j])
-				ft_memdel((void *)ar[j]);
-		free(ar);
-	}
-	return (f ? NULL : ar);
+		free(*result[i]);
+	free(*result);
+	*result = NULL;
+	return (NULL);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(char const *s, char c)
 {
-	char	**rez;
-	int		i;
-	int		j;
-	int		len;
+	char		**result;
+	int			i;
+	char const	*temp;
 
+	i = -1;
 	if (!s)
 		return (NULL);
-	i = sublen(s, c);
-	j = 0;
-	rez = (char **)ft_memalloc((i + 1) * sizeof(char **));
-	while (j < i && rez)
+	if (!(result = (char **)malloc(sizeof(char *) * (words(s, c) + 1))))
+		return (NULL);
+	result[words(s, c)] = NULL;
+	temp = *s == c ? NULL : s;
+	while (*s)
 	{
-		if (*s == c)
+		if (*s == c && *(s + 1) != c)
+			temp = s + 1;
+		else if (*s != c && (*(s + 1) == c || *(s + 1) == '\0'))
 		{
-			while (*s == c && *s)
-				s++;
-			if (!*s)
-				s--;
+			if ((result[++i] = ft_strnew(s - temp + 1)))
+				result[i] = ft_strncpy(result[i], temp, s - temp + 1);
+			else
+				return (error_case(&result, i));
 		}
-		len = subclen(&s, c);
-		if ((rez[j] = ft_strnew(len)) != NULL)
-			ft_strncat(rez[j++], s - len, len);
+		++s;
 	}
-	return (ar_checker(rez, i));
+	return (result);
 }
