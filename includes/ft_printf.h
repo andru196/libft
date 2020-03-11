@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycorrupt <ycorrupt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andru196 <andru196@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 14:31:06 by ycorrupt          #+#    #+#             */
-/*   Updated: 2019/06/27 00:11:15 by ycorrupt         ###   ########.fr       */
+/*   Updated: 2020/03/01 15:07:37 by andru196         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void				makestr_csp(t_param *lst, t_list **ml);
 int					makestr_f(t_param *lst, t_list **ml);
 int					search_size(short int size[5]);
 char				*ft_dtoa(long double nbr);
-int					ft_charinstr(const char *str, char c);
 void				lst_killer(t_param **lst);
 int					print(char *str, t_param *lst);
 int					makestr_e(t_param *lst, t_list **ml);

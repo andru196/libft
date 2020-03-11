@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sfalia-f <sfalia-f@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andru196 <andru196@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:09:54 by ycorrupt          #+#    #+#             */
-/*   Updated: 2020/01/26 17:17:54 by sfalia-f         ###   ########.fr       */
+/*   Updated: 2020/03/11 23:44:25 by andru196         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ void			ft_swap_points(void **a, void **b);
 int				ft_mod(long int num);
 int				ft_strendwith(char *str, char *end);
 int				ft_strstartwith(char *str, char *start);
+int				ft_charinstr(const char *str, char c);
+int				str_num_eq(long num, char *str);
+long long int	ft_atoix(char *str);
 
 #endif
