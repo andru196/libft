@@ -6,7 +6,7 @@
 /*   By: andru196 <andru196@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 15:11:04 by andru196          #+#    #+#             */
-/*   Updated: 2020/03/12 00:44:35 by andru196         ###   ########.fr       */
+/*   Updated: 2020/03/15 17:21:27 by andru196         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int str_num_eq(long num, char *str)
 	while (str != cpy && num)
 	{
 		str--;
-		if ((*(str) > '9' ? ft_toupper(*str) - 'A' + 10 : *str - '0') != num % pow)
+		if ((*(str) > '9' ? ft_toupper(*str) - 'A' + 10 : *str - '0') != ft_mod(num % pow))
 			return (0);
 		num /= pow;
 	}

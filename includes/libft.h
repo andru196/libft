@@ -6,7 +6,7 @@
 /*   By: andru196 <andru196@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 13:09:54 by ycorrupt          #+#    #+#             */
-/*   Updated: 2020/03/11 23:44:25 by andru196         ###   ########.fr       */
+/*   Updated: 2020/03/12 21:12:14 by andru196         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ int				ft_strstartwith(char *str, char *start);
 int				ft_charinstr(const char *str, char c);
 int				str_num_eq(long num, char *str);
 long long int	ft_atoix(char *str);
+int				ft_isspace(int c);
 
 #endif
